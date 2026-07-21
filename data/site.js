@@ -1,6 +1,7 @@
 export const site = {
-  name: "King Prime Farms",
-  legal: "King Prime Farms Ltd",
+  name: "Kings Prime Farms",
+  legal: "Kings Prime Farms Ltd",
+  slogan: "Quality from farm to table",
   tagline: "From our feedlot to your table — premium beef, dry-aged excellence and trusted livestock production.",
   phone: "+254 7XX XXX XXX",
   whatsapp: "2547XXXXXXXX", // digits only, country code first — used for wa.me links
@@ -8,6 +9,14 @@ export const site = {
   location: "Nairobi, Kenya",
   socials: { instagram: "#", facebook: "#" },
 };
+
+// Retail ordering happens on Camp David Ventures (same company, retail arm) —
+// individual/small orders. This site (Kings Prime Farms) handles wholesale
+// enquiries via the Contact page instead. Referenced by ProductCard, the
+// homepage hero, Nav, and Footer as the destination for all retail "shop" /
+// "add to order" actions.
+export const RETAIL_SITE_URL = "https://www.campdavidventuresltd.co.ke/";
+export const RETAIL_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.campdavid.campdavid";
 
 export const products = [
   { id: "ribeye", name: "Ribeye", tag: "Dry-aged 21 days", price: 1850, unit: "per kg", badge: "Dry-aged" },
@@ -56,12 +65,12 @@ export const posts = [
     excerpt: "What actually happens inside the aging room — and why 21 days changes everything about flavour and tenderness.",
     date: "2026-07-02",
     category: "Dry-aging",
-    body: "Dry-aging is controlled patience. For a minimum of 21 days, whole primal cuts rest in our climate-controlled aging room at near-freezing temperatures and carefully managed humidity. Two things happen. First, natural enzymes slowly break down muscle fibres, which is what gives dry-aged beef its signature tenderness. Second, moisture evaporates — the cut loses weight, but everything that remains is concentrated flavour.\n\nThat weight loss is why dry-aged beef costs more per kilo: you're paying for what stayed, not what left. At King Prime Farms we age in-house rather than outsourcing, which means we control the timeline, the conditions, and ultimately the plate.",
+    body: "Dry-aging is controlled patience. For a minimum of 21 days, whole primal cuts rest in our climate-controlled aging room at near-freezing temperatures and carefully managed humidity. Two things happen. First, natural enzymes slowly break down muscle fibres, which is what gives dry-aged beef its signature tenderness. Second, moisture evaporates — the cut loses weight, but everything that remains is concentrated flavour.\n\nThat weight loss is why dry-aged beef costs more per kilo: you're paying for what stayed, not what left. At Kings Prime Farms we age in-house rather than outsourcing, which means we control the timeline, the conditions, and ultimately the plate.",
   },
   {
     slug: "inside-our-feedlot",
     title: "Inside a professionally managed feedlot",
-    excerpt: "From animal selection to weigh-ins — the six-stage process every animal moves through before earning the King Prime grade.",
+    excerpt: "From animal selection to weigh-ins — the six-stage process every animal moves through before earning the Kings Prime grade.",
     date: "2026-06-18",
     category: "Feedlot",
     body: "A feedlot is only as good as its routine. Every animal that enters our pens moves through the same six stages: selection, a formulated nutrition plan, supervised daily feeding, routine veterinary care, regular weight monitoring, and audited housing and welfare standards.\n\nThe discipline pays off in consistency. When a wholesale partner orders from us for the tenth time, they get the same grade and the same marbling as the first time. That's not luck — it's the process.",

@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useCart } from "@/lib/cart-context";
-import { useAuth } from "@/lib/auth-context";
+import { RETAIL_SITE_URL } from "@/data/site";
 
 const links = [
   { href: "/about", label: "About" },
@@ -18,8 +18,6 @@ const links = [
 
 export default function Nav() {
   const path = usePathname();
-  const { count, setOpen } = useCart();
-  const { user, profile, signOutUser } = useAuth();
   const [menu, setMenu] = useState(false);
 
   return (
@@ -27,12 +25,9 @@ export default function Nav() {
       <div className="nav">
         <Link href="/" className="brand" onClick={() => setMenu(false)}>
           <span className="brand-mark" aria-hidden>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A24B" strokeWidth="1.4">
-              <path d="M4 10c0-3 2-5 4-5s3 2 3 2 1-2 3-2 4 2 4 5-3 4-3 7H7c0-3-3-4-3-7Z" />
-              <path d="M9 10h6" />
-            </svg>
+            <Image src="/images/logo.png" alt="" width={1017} height={718} priority />
           </span>
-          <span className="brand-name">King Prime <em>Farms</em></span>
+          <span className="brand-name">Kings Prime <em>Farms</em></span>
         </Link>
 
         <nav className="nav-links" aria-label="Main">
@@ -44,31 +39,9 @@ export default function Nav() {
         </nav>
 
         <div className="nav-actions">
-          {user ? (
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              {profile?.role === "admin" && (
-                <Link href="/admin" style={{ fontSize: 13, color: "var(--gold)" }}>Admin</Link>
-              )}
-              <Link href="/account" style={{ fontSize: 13, color: "var(--cream-dim)" }}>
-                {profile?.name?.split(" ")[0] || "Account"}
-              </Link>
-              <button
-                onClick={() => signOutUser()}
-                style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13, color: "var(--cream-dim)", padding: 0 }}
-              >
-                Sign out
-              </button>
-            </div>
-          ) : (
-            <div style={{ display: "flex", alignItems: "center", gap: 10, whiteSpace: "nowrap" }}>
-              <Link href="/sign-in" style={{ fontSize: 13, color: "var(--cream-dim)" }}>Sign in</Link>
-              <Link href="/sign-up" style={{ fontSize: 13, color: "var(--gold)" }}>Sign up</Link>
-            </div>
-          )}
-          <button className="cart-btn" onClick={() => setOpen(true)} aria-label="Open order cart">
-            Order
-            {count > 0 && <span className="cart-badge">{count}</span>}
-          </button>
+          <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer" className="cart-btn">
+            Shop Retail
+          </a>
           <button className="menu-btn" onClick={() => setMenu(!menu)} aria-expanded={menu} aria-label="Toggle menu">
             Menu
           </button>
@@ -80,6 +53,10 @@ export default function Nav() {
             {l.label}
           </Link>
         ))}
+        <div className="mobile-menu-divider" />
+        <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)" }}>
+          Shop Retail ↗
+        </a>
       </nav>
     </header>
   );

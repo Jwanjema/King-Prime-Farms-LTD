@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Interactive butcher's chart: hover/tap a primal region to highlight it and
-// see which King Prime cuts come from it.
+// see which Kings Prime cuts come from it.
 const REGIONS = [
   { id: "chuck", label: "Chuck", cuts: "Stewing beef · Mince", d: "M78 62 C92 50 112 44 132 46 L138 96 C120 100 100 102 86 108 C80 92 78 76 78 62 Z" },
   { id: "rib", label: "Rib", cuts: "Ribeye · Dry-aged rib", d: "M138 96 L132 46 C152 44 172 46 190 50 L192 98 C174 96 156 96 138 96 Z" },

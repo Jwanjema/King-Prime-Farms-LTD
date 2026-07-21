@@ -9,7 +9,7 @@ export default function Careers() {
       <div className="page-hero tex-pine">
         <div className="wrap">
           <div className="eyebrow tag">Join the team</div>
-          <h1>Careers at King Prime Farms</h1>
+          <h1>Careers at Kings Prime Farms</h1>
           <p className="lead">We hire people who take pride in doing things properly — on the feedlot, in the butchery, and on the road.</p>
         </div>
       </div>

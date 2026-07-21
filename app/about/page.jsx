@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 
@@ -13,8 +14,10 @@ const values = [
 export default function About() {
   return (
     <>
-      <div className="page-hero tex-pine">
-        <div className="wrap">
+      <div className="page-hero" style={{ position: "relative", overflow: "hidden" }}>
+        <Image src="/images/about-hero.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: "cover", zIndex: 0 }} />
+        <div className="page-hero-veil" />
+        <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <div className="eyebrow tag">Our story</div>
           <h1>Built on land, raised on standards.</h1>
           <p className="lead">
@@ -24,11 +27,11 @@ export default function About() {
       </div>
 
       <section>
-        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 70 }}>
+        <div className="wrap grid-2-responsive" style={{ gap: 70 }}>
           <Reveal>
             <h2 style={{ fontSize: 30, marginBottom: 18 }}>History</h2>
             <p style={{ color: "#4A4A40", marginBottom: 16 }}>
-              King Prime Farms Ltd began as a working feedlot with a simple conviction: Kenyan
+              Kings Prime Farms Ltd began as a working feedlot with a simple conviction: Kenyan
               beef can compete with the best in the world when it's raised, finished and processed
               with discipline. Over the years the operation has grown into a complete value chain —
               feedlot operations, dry-aging rooms and an in-house butchery — serving retail
@@ -45,10 +48,8 @@ export default function About() {
               management — and to carry Kenyan beef confidently into international markets.
             </p>
           </Reveal>
-          <Reveal className="tex-pine" style={{ aspectRatio: "3/4", position: "relative", alignSelf: "start" }}>
-            <div style={{ position: "absolute", left: 16, bottom: 16, background: "rgba(20,24,15,0.72)", color: "var(--cream)", fontSize: 11, padding: "8px 12px" }}>
-              Founders / farm photo slot
-            </div>
+          <Reveal style={{ aspectRatio: "3/4", position: "relative", alignSelf: "start", overflow: "hidden" }}>
+            <Image src="/images/about-founders.jpg" alt="Kings Prime Farms land, Kenya" fill sizes="(max-width: 920px) 100vw, 45vw" style={{ objectFit: "cover" }} />
           </Reveal>
         </div>
       </section>
@@ -56,7 +57,7 @@ export default function About() {
       <section style={{ background: "var(--cream-dim)" }}>
         <div className="wrap">
           <SectionHead eyebrow="What we stand for" title="Core values" />
-          <div className="timeline" style={{ gridTemplateColumns: "repeat(4,1fr)" }}>
+          <div className="timeline values-grid">
             {values.map((v) => (
               <Reveal key={v.num} className="t-step">
                 <span className="tnum">{v.num}</span>

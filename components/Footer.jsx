@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site } from "@/data/site";
+import Image from "next/image";
+import { site, RETAIL_SITE_URL, RETAIL_PLAY_STORE_URL } from "@/data/site";
 
 export default function Footer() {
   return (
@@ -7,9 +8,10 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div>
-            <div className="brand-name" style={{ marginBottom: 14 }}>
-              King Prime <em>Farms</em>
+            <div className="brand-name" style={{ marginBottom: 4 }}>
+              Kings Prime <em>Farms</em>
             </div>
+            <div className="tag" style={{ color: "var(--gold)", fontSize: 11, marginBottom: 14 }}>{site.slogan}</div>
             <p style={{ maxWidth: 280 }}>{site.tagline}</p>
           </div>
           <div>
@@ -20,7 +22,7 @@ export default function Footer() {
           </div>
           <div>
             <h5>Explore</h5>
-            <Link href="/products">Shop meat</Link>
+            <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer">Shop meat</a>
             <Link href="/feedlot">Feedlot activities</Link>
             <Link href="/contact">Wholesale enquiry</Link>
             <Link href="/careers">Careers</Link>
@@ -29,6 +31,9 @@ export default function Footer() {
             <h5>Visit</h5>
             <p style={{ marginBottom: 14 }}>{site.location} — map pin on the contact page.</p>
             <a href={site.socials.instagram}>Instagram · Facebook</a>
+            <a href={RETAIL_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 10 }}>
+              <Image src="/images/google-play-badge.png" alt="Get Camp David on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
+            </a>
           </div>
         </div>
         <div className="foot-bottom">

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { site } from "@/data/site";
 
 export default function Contact() {
@@ -24,8 +25,10 @@ export default function Contact() {
 
   return (
     <>
-      <div className="page-hero tex-pine">
-        <div className="wrap">
+      <div className="page-hero" style={{ position: "relative", overflow: "hidden" }}>
+        <Image src="/images/contact-hero.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: "cover", zIndex: 0 }} />
+        <div className="page-hero-veil" />
+        <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <div className="eyebrow tag">Get in touch</div>
           <h1>Contact us</h1>
           <p className="lead">Orders, wholesale programs, farm visits — we reply fast on WhatsApp.</p>
@@ -33,7 +36,7 @@ export default function Contact() {
       </div>
 
       <section>
-        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 70 }}>
+        <div className="wrap grid-2-even" style={{ gap: 70 }}>
           <div>
             <h2 style={{ fontSize: 26, marginBottom: 22 }}>Reach us directly</h2>
             <div style={{ display: "grid", gap: 18 }}>
@@ -52,10 +55,16 @@ export default function Contact() {
                 <p style={{ fontSize: 15, color: "#4A4A40" }}>{site.location}</p>
               </div>
             </div>
-            <div className="tex-pine" style={{ aspectRatio: "16/10", marginTop: 30, position: "relative" }}>
-              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--cream-dim)", fontSize: 12 }} className="tag">
-                Google Maps embed slot
-              </div>
+            <div style={{ aspectRatio: "16/10", marginTop: 30, position: "relative", overflow: "hidden" }}>
+              <iframe
+                title="Kings Prime Farms location — Nairobi, Kenya"
+                src="https://www.google.com/maps?q=Nairobi,Kenya&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0, position: "absolute", inset: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
 

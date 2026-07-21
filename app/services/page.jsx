@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import { services } from "@/data/site";
@@ -8,8 +9,10 @@ export const metadata = { title: "Our services" };
 export default function Services() {
   return (
     <>
-      <div className="page-hero tex-pine">
-        <div className="wrap">
+      <div className="page-hero" style={{ position: "relative", overflow: "hidden" }}>
+        <Image src="/images/services-hero.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: "cover", zIndex: 0 }} />
+        <div className="page-hero-veil" />
+        <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <div className="eyebrow tag">What we do</div>
           <h1>Our services</h1>
           <p className="lead">Six business lines, one standard of quality — from live animal to finished cut.</p>

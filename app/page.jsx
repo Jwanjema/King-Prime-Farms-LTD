@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ProductCard from "@/components/ProductCard";
 import Counter from "@/components/Counter";
-import { services, products, feedlotStages, whyUs } from "@/data/site";
+import { services, products, feedlotStages, whyUs, RETAIL_SITE_URL } from "@/data/site";
 
 const marqueeItems = ["Dry-aged ribeye", "Feedlot finished", "Farm-to-table trace", "Wholesale supply", "Nairobi · Kenya", "Grade A beef"];
 
@@ -36,7 +36,7 @@ export default function Home() {
                 production, raised, finished and processed under one roof.
               </p>
               <div className="btn-row">
-                <Link href="/products" className="btn btn-gold">Shop meat</Link>
+                <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">Shop Retail</a>
                 <Link href="/contact" className="btn btn-outline">Visit our farm</Link>
               </div>
               <div className="hero-stats">
@@ -48,7 +48,7 @@ export default function Home() {
             <div className="stamp" aria-hidden>
               <div className="stamp-inner">
                 <div className="crown">♛</div>
-                <div className="l1">King Prime</div>
+                <div className="l1">Kings Prime</div>
                 <div className="l2">GRADE · A · BEEF</div>
               </div>
             </div>
@@ -65,13 +65,13 @@ export default function Home() {
       <section>
         <div className="wrap" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 70, alignItems: "center" }} data-about-grid>
           <Reveal style={{ aspectRatio: "4/5", position: "relative", overflow: "hidden" }}>
-            <Image src="/images/about-feedlot.jpg" alt="Cattle grazing at King Prime Farms" fill sizes="(max-width: 920px) 100vw, 45vw" style={{ objectFit: "cover" }} priority />
+            <Image src="/images/about-feedlot.jpg" alt="Cattle grazing at Kings Prime Farms" fill sizes="(max-width: 920px) 100vw, 45vw" style={{ objectFit: "cover" }} priority />
           </Reveal>
           <Reveal>
             <div className="sec-eyebrow tag">Our story</div>
             <h2 style={{ fontSize: 34, marginBottom: 18 }}>Built on land, raised on standards.</h2>
             <p style={{ color: "#4A4A40", marginBottom: 16, maxWidth: 520 }}>
-              King Prime Farms Ltd began as a working feedlot and has grown into a full-cycle
+              Kings Prime Farms Ltd began as a working feedlot and has grown into a full-cycle
               beef operation — from animal selection through finishing, dry-aging and butchery.
               Every step stays under our own supervision, so quality is never handed off.
             </p>
@@ -97,7 +97,7 @@ export default function Home() {
 
       <section>
         <div className="wrap">
-          <SectionHead eyebrow="The cuts" title="Shop premium beef" sub="Add cuts to your order and check out on WhatsApp — we confirm weight, delivery and payment." />
+          <SectionHead eyebrow="The cuts" title="Shop premium beef" sub="Browse our cuts here — order retail through Camp David, our sister site." />
           <div className="grid-4">
             {products.slice(0, 4).map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
@@ -109,7 +109,7 @@ export default function Home() {
 
       <section style={{ background: "var(--cream-dim)" }}>
         <div className="wrap">
-          <SectionHead eyebrow="Pen to plate" title="Inside the feedlot" sub="The six stages every animal moves through before it earns the King Prime grade." />
+          <SectionHead eyebrow="Pen to plate" title="Inside the feedlot" sub="The six stages every animal moves through before it earns the Kings Prime grade." />
           <div className="timeline">
             {feedlotStages.map((t) => (
               <Reveal key={t.num} className="t-step">
@@ -124,7 +124,7 @@ export default function Home() {
 
       <section>
         <div className="wrap">
-          <SectionHead eyebrow="Why us" title="Why choose King Prime Farms" />
+          <SectionHead eyebrow="Why us" title="Why choose Kings Prime Farms" />
           <div className="line-grid cols-4">
             {whyUs.slice(0, 8).map((w) => (
               <Reveal key={w.title} className="why-card">

@@ -1,10 +1,8 @@
-"use client";
-import { useCart } from "@/lib/cart-context";
 import Tilt from "@/components/Tilt";
 import CutArt from "@/components/CutArt";
+import { RETAIL_SITE_URL } from "@/data/site";
 
 export default function ProductCard({ product }) {
-  const { add } = useCart();
   return (
     <Tilt>
       <article className="prod-card" style={{ height: "100%" }}>
@@ -18,9 +16,15 @@ export default function ProductCard({ product }) {
           KES {product.price.toLocaleString()} <span>{product.unit}</span>
         </div>
         <div className="p-actions">
-          <button className="btn btn-beef btn-sm" style={{ flex: 1, justifyContent: "center" }} onClick={() => add(product)}>
-            Add to order
-          </button>
+          <a
+            href={RETAIL_SITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-beef btn-sm"
+            style={{ flex: 1, justifyContent: "center" }}
+          >
+            Shop Retail
+          </a>
         </div>
       </article>
     </Tilt>

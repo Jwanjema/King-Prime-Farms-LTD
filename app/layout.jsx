@@ -1,9 +1,6 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import { CartProvider } from "@/lib/cart-context";
-import { AuthProvider } from "@/lib/auth-context";
 import { site } from "@/data/site";
 
 export const metadata = {
@@ -13,7 +10,7 @@ export const metadata = {
   },
   description:
     "Premium beef producer, feedlot operator and dry-aged meat specialists in Kenya. From our feedlot to your table — retail cuts, wholesale supply and livestock finishing.",
-  keywords: ["premium beef Kenya", "dry-aged beef Nairobi", "feedlot Kenya", "wholesale meat supplier", "King Prime Farms"],
+  keywords: ["premium beef Kenya", "dry-aged beef Nairobi", "feedlot Kenya", "wholesale meat supplier", "Kings Prime Farms"],
   openGraph: {
     title: `${site.legal} — Premium Beef & Feedlot`,
     description: site.tagline,
@@ -34,14 +31,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <CartProvider>
-          <AuthProvider>
-            <Nav />
-            <main>{children}</main>
-            <Footer />
-            <CartDrawer />
-          </AuthProvider>
-        </CartProvider>
+        <Nav />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

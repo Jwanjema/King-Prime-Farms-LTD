@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
 import SectionHead from "@/components/SectionHead";
 import CowChart from "@/components/CowChart";
@@ -8,13 +9,15 @@ export const metadata = { title: "Shop premium beef" };
 export default function Products() {
   return (
     <>
-      <div className="page-hero tex-beef">
-        <div className="wrap">
+      <div className="page-hero" style={{ position: "relative", overflow: "hidden" }}>
+        <Image src="/images/products-hero.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: "cover", zIndex: 0 }} />
+        <div className="page-hero-veil" />
+        <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <div className="eyebrow tag">The cuts</div>
           <h1>Premium meat products</h1>
           <p className="lead">
-            Add cuts to your order and check out on WhatsApp — we confirm final weight, delivery
-            and payment on chat. Wholesale volumes welcome.
+            Browse our cuts — place your retail order through Camp David, our sister site. Wholesale
+            volumes welcome via enquiry.
           </p>
         </div>
       </div>
