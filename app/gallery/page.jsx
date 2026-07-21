@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionHead from "@/components/SectionHead";
 import { galleryItems } from "@/data/site";
 
@@ -19,11 +20,12 @@ export default function Gallery() {
           <SectionHead
             eyebrow="Photo & video"
             title="Around the farm"
-            sub="Placeholder tiles — final photography and video drop straight into this grid."
+            sub="The operation in pictures — feedlot, cattle, aging room and butchery."
           />
           <div className="gallery-grid">
-            {galleryItems.map((g, i) => (
-              <div key={g.label} className={`g-item ${g.tall ? "tall" : ""} ${i % 2 ? "tex-pine2" : "tex-pine"}`}>
+            {galleryItems.map((g) => (
+              <div key={g.label} className={`g-item ${g.tall ? "tall" : ""}`}>
+                <Image src={g.img} alt={g.label} fill sizes="(max-width: 920px) 50vw, 25vw" style={{ objectFit: "cover" }} />
                 <div className="glabel">{g.label}</div>
               </div>
             ))}

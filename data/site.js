@@ -83,11 +83,11 @@ export const jobs = [
 ];
 
 export const galleryItems = [
-  { label: "Feedlot", tall: true },
-  { label: "Healthy cattle" },
-  { label: "Dry-aging room" },
-  { label: "Butchery", tall: true },
-  { label: "Meat cutting" },
-  { label: "Staff" },
-  { label: "Delivery fleet" },
+  { label: "Feedlot", tall: true, img: "/images/gallery/feedlot.jpg" },
+  { label: "Healthy cattle", img: "/images/gallery/cattle.jpg" },
+  { label: "Dry-aging room", img: "/images/gallery/aging-room.jpg" },
+  { label: "Butchery", tall: true, img: "/images/gallery/butchery.jpg" },
+  { label: "Meat cutting", img: "/images/gallery/meat-cutting.jpg" },
+  { label: "Staff", img: "/images/gallery/staff.jpg" },
+  { label: "Delivery fleet", img: "/images/gallery/delivery-fleet.jpg" },
 ];

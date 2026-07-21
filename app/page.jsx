@@ -1,12 +1,10 @@
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ProductCard from "@/components/ProductCard";
 import Counter from "@/components/Counter";
 import { services, products, feedlotStages, whyUs } from "@/data/site";
-
-const Hero3D = dynamic(() => import("@/components/Hero3D"), { ssr: false });
 
 const marqueeItems = ["Dry-aged ribeye", "Feedlot finished", "Farm-to-table trace", "Wholesale supply", "Nairobi · Kenya", "Grade A beef"];
 
@@ -14,7 +12,15 @@ export default function Home() {
   return (
     <>
       <section className="hero" style={{ padding: 0 }}>
-        <Hero3D />
+        <Image
+          src="/images/hero-bull-sunset.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hero-bg"
+          style={{ objectFit: "cover", objectPosition: "center 30%" }}
+        />
         <div className="hero-veil" />
         <div className="wrap hero-fg" style={{ padding: "110px 32px 90px" }}>
           <div className="hero-grid">
@@ -58,10 +64,8 @@ export default function Home() {
 
       <section>
         <div className="wrap" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 70, alignItems: "center" }} data-about-grid>
-          <Reveal className="tex-pine" style={{ aspectRatio: "4/5", position: "relative" }}>
-            <div style={{ position: "absolute", left: 16, bottom: 16, background: "rgba(20,24,15,0.72)", color: "var(--cream)", fontSize: 11, padding: "8px 12px" }}>
-              Feedlot — photography slot
-            </div>
+          <Reveal style={{ aspectRatio: "4/5", position: "relative", overflow: "hidden" }}>
+            <Image src="/images/about-feedlot.jpg" alt="Cattle grazing at King Prime Farms" fill sizes="(max-width: 920px) 100vw, 45vw" style={{ objectFit: "cover" }} priority />
           </Reveal>
           <Reveal>
             <div className="sec-eyebrow tag">Our story</div>
