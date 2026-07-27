@@ -1,9 +1,12 @@
 import SectionHead from "@/components/SectionHead";
-import { jobs, site } from "@/data/site";
+import { site } from "@/data/site";
+import { getJobs } from "@/lib/data/jobs";
 
 export const metadata = { title: "Careers" };
+export const revalidate = 60;
 
-export default function Careers() {
+export default async function Careers() {
+  const jobs = await getJobs();
   return (
     <>
       <div className="page-hero tex-pine">
@@ -19,7 +22,7 @@ export default function Careers() {
           <SectionHead eyebrow="Open roles" title="Current openings" />
           <div style={{ display: "grid", gap: 14, maxWidth: 780 }}>
             {jobs.map((j) => (
-              <article key={j.title} style={{ border: "1px solid var(--line-dark)", padding: "26px 28px", display: "flex", justifyContent: "space-between", gap: 20, flexWrap: "wrap", alignItems: "center", background: "var(--cream)" }}>
+              <article key={j.id} style={{ border: "1px solid var(--line-dark)", padding: "26px 28px", display: "flex", justifyContent: "space-between", gap: 20, flexWrap: "wrap", alignItems: "center", background: "var(--cream)" }}>
                 <div style={{ maxWidth: 480 }}>
                   <div className="sec-eyebrow tag" style={{ marginBottom: 6 }}>{j.type} · {j.loc}</div>
                   <h3 style={{ fontSize: 20, marginBottom: 6 }}>{j.title}</h3>

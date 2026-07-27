@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { site } from "@/data/site";
+import { submitEnquiry } from "@/lib/firebase";
 
 export default function Contact() {
   const [tab, setTab] = useState("contact");
@@ -20,6 +21,19 @@ export default function Contact() {
       "",
       form.message,
     ].filter(Boolean).join("\n");
+
+    // Record-keeping write for the admin inbox — must never block or break
+    // the WhatsApp send, which is the primary channel for this audience.
+    submitEnquiry({
+      type: tab,
+      name: form.name,
+      phone: form.phone,
+      email: form.email || null,
+      company: tab === "wholesale" ? form.company || null : null,
+      message: form.message,
+      handled: false,
+    }).catch((err) => console.error("Failed to record enquiry:", err));
+
     window.open(`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   };
 

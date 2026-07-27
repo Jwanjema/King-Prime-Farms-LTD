@@ -4,11 +4,15 @@ import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ProductCard from "@/components/ProductCard";
 import Counter from "@/components/Counter";
-import { services, products, feedlotStages, whyUs, RETAIL_SITE_URL } from "@/data/site";
+import { services, feedlotStages, whyUs, RETAIL_SITE_URL } from "@/data/site";
+import { getProducts } from "@/lib/data/products";
+
+export const revalidate = 60;
 
 const marqueeItems = ["Dry-aged ribeye", "Feedlot finished", "Farm-to-table trace", "Wholesale supply", "Nairobi · Kenya", "Grade A beef"];
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
   return (
     <>
       <section className="hero" style={{ padding: 0 }}>
@@ -22,7 +26,7 @@ export default function Home() {
           style={{ objectFit: "cover", objectPosition: "center 30%" }}
         />
         <div className="hero-veil" />
-        <div className="wrap hero-fg" style={{ padding: "110px 32px 90px" }}>
+        <div className="wrap hero-fg hero-fg-pad">
           <div className="hero-grid">
             <div>
               <div className="eyebrow tag">Nairobi, Kenya · Feedlot & butchery</div>
@@ -63,7 +67,7 @@ export default function Home() {
       </div>
 
       <section>
-        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 70, alignItems: "center" }} data-about-grid>
+        <div className="wrap grid-2-responsive" style={{ gap: 70, alignItems: "center" }}>
           <Reveal style={{ aspectRatio: "4/5", position: "relative", overflow: "hidden" }}>
             <Image src="/images/about-feedlot.jpg" alt="Cattle grazing at Kings Prime Farms" fill sizes="(max-width: 920px) 100vw, 45vw" style={{ objectFit: "cover" }} priority />
           </Reveal>

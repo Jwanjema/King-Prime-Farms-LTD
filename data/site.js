@@ -18,15 +18,49 @@ export const site = {
 export const RETAIL_SITE_URL = "https://www.campdavidventuresltd.co.ke/";
 export const RETAIL_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.campdavid.campdavid";
 
+// SEED SOURCE ONLY — not read by the site after the Firestore migration.
+// The public pages now read products/posts/jobs live from Firestore (see
+// lib/data/*.js); edit content going forward via /admin, not this file.
+// This array is only consumed once, by scripts/seed-firestore.mjs, to
+// populate Firestore on first setup. Prices originally tracked Camp
+// David's retail catalogue (see RETAIL_SITE_URL) as a starting point.
 export const products = [
-  { id: "ribeye", name: "Ribeye", tag: "Dry-aged 21 days", price: 1850, unit: "per kg", badge: "Dry-aged" },
-  { id: "sirloin", name: "Sirloin", tag: "Grain finished", price: 1450, unit: "per kg" },
-  { id: "tbone", name: "T-bone", tag: "Bone-in classic", price: 1350, unit: "per kg" },
-  { id: "fillet", name: "Fillet", tag: "Whole or steaks", price: 2200, unit: "per kg", badge: "Premium" },
-  { id: "brisket", name: "Brisket", tag: "Slow-cook ready", price: 980, unit: "per kg" },
-  { id: "mince", name: "Minced beef", tag: "90/10 lean", price: 750, unit: "per kg" },
-  { id: "sausages", name: "Beef sausages", tag: "In-house recipe", price: 650, unit: "per kg" },
-  { id: "half-carcass", name: "Half carcass", tag: "Wholesale order", price: 620, unit: "per kg", badge: "Wholesale" },
+  // Homepage teaser mix — kept first so page.jsx's products.slice(0, 4) shows
+  // one of each family (dry-aged, classic steak, premium, goat).
+  { id: "ribeye", name: "Ribeye", tag: "Dry-aged 21 days", price: 1850, unit: "per kg", badge: "Dry-aged", cat: "Aged" },
+  { id: "sirloin", name: "Sirloin steak", tag: "Grain finished", price: 850, unit: "per kg", cat: "Beef" },
+  { id: "fillet", name: "Fillet", tag: "Whole or steaks", price: 2200, unit: "per kg", badge: "Premium", cat: "Beef" },
+  { id: "goat-leg", name: "Goat leg", tag: "Whole leg cut", price: 900, unit: "per kg", cat: "Goat & Lamb" },
+
+  // Dry-aged
+  { id: "dry-aged-14", name: "Dry-aged beef, 14 days", tag: "Aged beef", price: 1600, unit: "per kg", badge: "Dry-aged", cat: "Aged" },
+  { id: "dry-aged-28", name: "Dry-aged beef, 28 days", tag: "Extra aged", price: 1800, unit: "per kg", badge: "Dry-aged", cat: "Aged" },
+
+  // Beef steaks & classic cuts
+  { id: "tbone", name: "T-bone steak", tag: "Bone-in classic", price: 800, unit: "per kg", cat: "Beef" },
+  { id: "topside", name: "Topside steak", tag: "Lean & tender", price: 850, unit: "per kg", cat: "Beef" },
+  { id: "silverside", name: "Silverside steak", tag: "Lean roasting cut", price: 850, unit: "per kg", cat: "Beef" },
+  { id: "chuck", name: "Chuck cuts", tag: "Slow-cook ready", price: 800, unit: "per kg", cat: "Beef" },
+  { id: "brisket", name: "Brisket", tag: "Slow-cook ready", price: 700, unit: "per kg", cat: "Beef" },
+  { id: "cubes", name: "Beef cubes / steak", tag: "Stew & fry ready", price: 850, unit: "per kg", cat: "Beef" },
+  { id: "on-bone", name: "Beef meat on bone", tag: "Family favourite", price: 700, unit: "per kg", cat: "Beef" },
+  { id: "ribs", name: "Beef short ribs", tag: "Braise or grill", price: 700, unit: "per kg", cat: "Beef" },
+  { id: "shank", name: "Shank cuts", tag: "Osso buco ready", price: 700, unit: "per kg", cat: "Beef" },
+  { id: "oxtail", name: "Oxtail", tag: "Slow-braise classic", price: 700, unit: "per kg", cat: "Beef" },
+  { id: "mince", name: "Minced beef", tag: "90/10 lean", price: 880, unit: "per kg", cat: "Beef" },
+  { id: "bone-soup", name: "Beef bones for soup", tag: "Rich stock base", price: 200, unit: "per kg", cat: "Beef" },
+  { id: "liver", name: "Beef liver", tag: "Stripped, ready to cook", price: 750, unit: "per kg", cat: "Offal" },
+  { id: "half-carcass", name: "Half carcass", tag: "Wholesale order", price: 620, unit: "per kg", badge: "Wholesale", cat: "Wholesale" },
+
+  // Goat & lamb
+  { id: "goat-shoulder", name: "Goat shoulder", tag: "Roast or braise", price: 950, unit: "per kg", cat: "Goat & Lamb" },
+  { id: "goat-ribs", name: "Goat ribs", tag: "Grill ready", price: 900, unit: "per kg", cat: "Goat & Lamb" },
+  { id: "lamb-chops", name: "Lamb leg chops", tag: "Pan or grill", price: 900, unit: "per kg", cat: "Goat & Lamb" },
+
+  // Ready-to-grill / choma
+  { id: "sausages", name: "Beef sausages", tag: "In-house recipe", price: 650, unit: "per kg", cat: "Choma" },
+  { id: "beef-choma", name: "Beef choma, 1kg", tag: "Marinated, grill ready", price: 1000, unit: "per kg", cat: "Choma" },
+  { id: "burger-patties", name: "Burger patties, 5pc", tag: "In-house recipe", price: 550, unit: "per pack", cat: "Choma" },
 ];
 
 export const services = [
@@ -58,6 +92,7 @@ export const whyUs = [
   { icon: "E", title: "Export-ready", body: "Documentation and standards built for regional and international buyers." },
 ];
 
+// SEED SOURCE ONLY — see the note above products. Edit posts via /admin.
 export const posts = [
   {
     slug: "benefits-of-dry-aged-beef",
@@ -85,6 +120,7 @@ export const posts = [
   },
 ];
 
+// SEED SOURCE ONLY — see the note above products. Edit jobs via /admin.
 export const jobs = [
   { title: "Feedlot supervisor", type: "Full-time", loc: "On-farm", body: "Oversee daily feeding schedules, pen conditions and the weigh-in program." },
   { title: "Butchery technician", type: "Full-time", loc: "Processing unit", body: "Skilled meat cutting and preparation under HACCP-aligned hygiene standards." },

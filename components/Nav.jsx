@@ -20,6 +20,8 @@ export default function Nav() {
   const path = usePathname();
   const [menu, setMenu] = useState(false);
 
+  if (path.startsWith("/admin")) return null;
+
   return (
     <header className="site-header">
       <div className="nav">

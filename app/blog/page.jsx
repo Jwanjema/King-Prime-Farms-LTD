@@ -1,17 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import SectionHead from "@/components/SectionHead";
-import { posts } from "@/data/site";
+import { getPosts } from "@/lib/data/posts";
 
 export const metadata = { title: "Blog" };
+export const revalidate = 60;
 
 const postImages = {
   "benefits-of-dry-aged-beef": "/images/blog-dry-aging.jpg",
   "inside-our-feedlot": "/images/blog-feedlot.jpg",
   "cooking-the-perfect-steak": "/images/blog-cooking.jpg",
 };
+const FALLBACK_IMAGE = "/images/blog-feedlot.jpg";
 
-export default function Blog() {
+export default async function Blog() {
+  const posts = await getPosts();
   return (
     <>
       <div className="page-hero" style={{ position: "relative", overflow: "hidden" }}>
@@ -32,7 +35,7 @@ export default function Blog() {
               <Link key={p.slug} href={`/blog/${p.slug}`}>
                 <article className="post-card">
                   <div className="post-thumb" style={{ position: "relative" }}>
-                    <Image src={postImages[p.slug]} alt={p.title} fill sizes="(max-width: 920px) 50vw, 33vw" style={{ objectFit: "cover" }} />
+                    <Image src={postImages[p.slug] || FALLBACK_IMAGE} alt={p.title} fill sizes="(max-width: 920px) 50vw, 33vw" style={{ objectFit: "cover" }} />
                   </div>
                   <div className="post-body">
                     <div className="post-meta tag">{p.category} · {p.date}</div>

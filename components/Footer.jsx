@@ -1,8 +1,13 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { site, RETAIL_SITE_URL, RETAIL_PLAY_STORE_URL } from "@/data/site";
 
 export default function Footer() {
+  const path = usePathname();
+  if (path.startsWith("/admin")) return null;
+
   return (
     <footer className="site-footer" id="footer">
       <div className="wrap">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Tilt from "@/components/Tilt";
 import CutArt from "@/components/CutArt";
 import { RETAIL_SITE_URL } from "@/data/site";
@@ -7,7 +8,11 @@ export default function ProductCard({ product }) {
     <Tilt>
       <article className="prod-card" style={{ height: "100%" }}>
         <div className="prod-thumb">
-          <CutArt id={product.id} />
+          {product.imageUrl ? (
+            <Image src={product.imageUrl} alt={product.name} fill sizes="(max-width: 640px) 50vw, 25vw" style={{ objectFit: "cover" }} />
+          ) : (
+            <CutArt id={product.cutId || product.id} />
+          )}
           {product.badge && <span className="cut-badge tag">{product.badge}</span>}
         </div>
         <h4>{product.name}</h4>

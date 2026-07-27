@@ -2,11 +2,13 @@ import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
 import SectionHead from "@/components/SectionHead";
 import CowChart from "@/components/CowChart";
-import { products } from "@/data/site";
+import { getProducts } from "@/lib/data/products";
 
 export const metadata = { title: "Shop premium beef" };
+export const revalidate = 60;
 
-export default function Products() {
+export default async function Products() {
+  const products = await getProducts();
   return (
     <>
       <div className="page-hero" style={{ position: "relative", overflow: "hidden" }}>
