@@ -12,8 +12,11 @@ export async function POST(request) {
 
   try {
     const decoded = await adminAuth.verifyIdToken(idToken);
-    const adminEmail = process.env.ADMIN_EMAIL;
-    if (!adminEmail || decoded.email?.toLowerCase() !== adminEmail.toLowerCase()) {
+    const adminEmails = (process.env.ADMIN_EMAILS || process.env.ADMIN_EMAIL || "")
+      .split(",")
+      .map((e) => e.trim().toLowerCase())
+      .filter(Boolean);
+    if (!adminEmails.includes(decoded.email?.toLowerCase())) {
       return Response.json({ error: "Not authorized" }, { status: 403 });
     }
 
