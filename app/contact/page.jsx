@@ -1,17 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { site } from "@/data/site";
 import { submitEnquiry } from "@/lib/firebase";
 
 export default function Contact() {
+  return (
+    <Suspense fallback={null}>
+      <ContactForm />
+    </Suspense>
+  );
+}
+
+function ContactForm() {
+  const searchParams = useSearchParams();
   const [tab, setTab] = useState("contact");
   const [form, setForm] = useState({ name: "", phone: "", email: "", company: "", message: "" });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
+  useEffect(() => {
+    const type = searchParams.get("type");
+    if (type === "wholesale" || type === "system") setTab(type);
+  }, [searchParams]);
+
   const submit = (e) => {
     e.preventDefault();
-    const intro = tab === "wholesale" ? "Wholesale enquiry" : "General enquiry";
+    const intro = tab === "wholesale" ? "Wholesale enquiry" : tab === "system" ? "Livestock system demo request" : "General enquiry";
     const msg = [
       `${intro} — ${site.name} website`,
       `Name: ${form.name}`,
@@ -29,7 +44,7 @@ export default function Contact() {
       name: form.name,
       phone: form.phone,
       email: form.email || null,
-      company: tab === "wholesale" ? form.company || null : null,
+      company: (tab === "wholesale" || tab === "system") ? form.company || null : null,
       message: form.message,
       handled: false,
     }).catch((err) => console.error("Failed to record enquiry:", err));
@@ -96,16 +111,27 @@ export default function Contact() {
               >
                 Wholesale enquiry
               </button>
+              <button
+                className={`btn btn-sm ${tab === "system" ? "btn-gold" : "btn-outline-dark"}`}
+                onClick={() => setTab("system")}
+              >
+                System demo
+              </button>
             </div>
             <form onSubmit={submit}>
               <div className="field">
                 <label htmlFor="name">Your name</label>
                 <input id="name" required value={form.name} onChange={set("name")} placeholder="Jane Wanjiku" />
               </div>
-              {tab === "wholesale" && (
+              {(tab === "wholesale" || tab === "system") && (
                 <div className="field">
                   <label htmlFor="company">Business / company</label>
-                  <input id="company" value={form.company} onChange={set("company")} placeholder="Hotel, butchery or restaurant name" />
+                  <input
+                    id="company"
+                    value={form.company}
+                    onChange={set("company")}
+                    placeholder={tab === "system" ? "Feedlot or butchery name" : "Hotel, butchery or restaurant name"}
+                  />
                 </div>
               )}
               <div className="field">
@@ -117,14 +143,22 @@ export default function Contact() {
                 <input id="email" type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" />
               </div>
               <div className="field">
-                <label htmlFor="message">{tab === "wholesale" ? "Volumes & cuts needed" : "Message"}</label>
+                <label htmlFor="message">
+                  {tab === "wholesale" ? "Volumes & cuts needed" : tab === "system" ? "About your operation" : "Message"}
+                </label>
                 <textarea
                   id="message"
                   rows={5}
                   required
                   value={form.message}
                   onChange={set("message")}
-                  placeholder={tab === "wholesale" ? "e.g. 200kg of sirloin & ribeye weekly for our steakhouse…" : "How can we help?"}
+                  placeholder={
+                    tab === "wholesale"
+                      ? "e.g. 200kg of sirloin & ribeye weekly for our steakhouse…"
+                      : tab === "system"
+                      ? "e.g. Herd size, number of pens, and whether you run your own butchery…"
+                      : "How can we help?"
+                  }
                 />
               </div>
               <button type="submit" className="btn btn-gold" style={{ width: "100%", justifyContent: "center" }}>

@@ -29,6 +29,7 @@ export default function Footer() {
             <h5>Explore</h5>
             <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer">Shop meat</a>
             <Link href="/feedlot">Feedlot activities</Link>
+            <Link href="/system">Livestock system</Link>
             <Link href="/contact">Wholesale enquiry</Link>
             <Link href="/careers">Careers</Link>
           </div>

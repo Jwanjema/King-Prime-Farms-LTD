@@ -127,6 +127,102 @@ export const jobs = [
   { title: "Delivery driver", type: "Contract", loc: "Nairobi routes", body: "Cold-chain deliveries to wholesale and retail customers across the city." },
 ];
 
+// Livestock & Feedlot Management System — the software product we license/sell
+// to other feedlot and butchery operators, built from our own in-house system.
+export const systemPitch = {
+  eyebrow: "Software, built for this industry",
+  title: "The system running our own feedlot — now available to yours",
+  lead: "Full traceability from animal purchase to retail cut, plus the costing and reporting tools that turn a feedlot into a decision-driven business. We built it to run Kings Prime Farms. Now we license it to other feedlot and butchery operators.",
+};
+
+// The signature "trace a kg of beef back to the animal" chain — the system's
+// core value prop made visible. Six checkpoints, in the order an animal
+// actually moves through the business.
+export const traceChain = [
+  { step: "Purchase", title: "Animal registered", body: "ID, breed, source and purchase price logged on intake." },
+  { step: "Feedlot", title: "Feeding & health", body: "Rations, weigh-ins and vet care tracked per pen." },
+  { step: "Weigh-in", title: "Performance", body: "ADG and FCR measured against target market weight." },
+  { step: "Slaughter", title: "Carcass graded", body: "Hot weight, dressing % and meat grade recorded." },
+  { step: "Retail cut", title: "Yield valued", body: "Every cut priced back to its carcass and animal." },
+  { step: "Sale", title: "Margin known", body: "True profit per animal, from purchase to payment." },
+];
+
+export const systemStats = [
+  { value: 9, suffix: "", label: "Core modules, one system" },
+  { value: 20, suffix: "+", label: "Built-in reports & dashboards" },
+  { value: 6, suffix: "", label: "Stages tracked, purchase to sale" },
+  { value: 100, suffix: "%", label: "Animal-to-cut traceability" },
+];
+
+export const systemModuleGroups = [
+  {
+    tag: "Animal & health",
+    title: "The animal record",
+    modules: [
+      {
+        title: "Livestock register & profiles",
+        body: "RFID/ear-tag ID, breed, source, purchase price, pen allocation, body score and target weight — one record per animal from day one.",
+      },
+      {
+        title: "Health & clinical management",
+        body: "Vaccination and deworming schedules, treatment history, mortality records, medicine inventory and withdrawal periods, with automatic alerts.",
+      },
+      {
+        title: "Weight & performance tracking",
+        body: "Weekly weigh-ins, ADG and FCR, weight-gain charts, and pen-level performance comparisons — exportable to PDF and Excel.",
+      },
+    ],
+  },
+  {
+    tag: "Feed & pens",
+    title: "Day-to-day operations",
+    modules: [
+      {
+        title: "Feed formulation & inventory",
+        body: "TMR recipes, daily rations per pen, feed cost per animal and per kg gain, plus live silage, hay and grain stock levels.",
+      },
+      {
+        title: "Pen & inventory management",
+        body: "Pen capacity and occupancy, movement history, cleaning schedules, and stock alerts for drugs, minerals, fuel and spares.",
+      },
+    ],
+  },
+  {
+    tag: "Money & traceability",
+    title: "From cost to carcass",
+    modules: [
+      {
+        title: "Finance & costing",
+        body: "True cost and margin per animal — purchase, feed, labour and vet costs rolled up into cash flow, expense and profitability reports.",
+      },
+      {
+        title: "Slaughter & carcass traceability",
+        body: "Hot carcass weight, dressing percentage, meat grade and yield — traced back to the original animal, through to retail cuts sold.",
+      },
+    ],
+  },
+  {
+    tag: "Sales & oversight",
+    title: "Selling and staying on top of it",
+    modules: [
+      {
+        title: "Sales, POS & customer orders",
+        body: "Live animal sales, carcass transfers, point-of-sale integration, customer orders, deliveries and payment tracking in one flow.",
+      },
+      {
+        title: "Reports, dashboard & alerts",
+        body: "A daily dashboard of ADG, FCR, feed cost and projected profit, plus automated alerts for vaccinations, low stock and animals ready for market.",
+      },
+    ],
+  },
+];
+
+export const systemExtras = [
+  { title: "Human resources", body: "Staff records, attendance, task assignment and payroll integration for feedlot and butchery teams." },
+  { title: "Mobile app, offline-first", body: "Scan RFID tags, record field weights and capture photos with no signal — syncs the moment you're back online." },
+  { title: "ERP-ready", body: "Integrates with finance, procurement and operations systems for businesses that need it to plug into a wider stack." },
+];
+
 export const galleryItems = [
   { label: "Feedlot", tall: true, img: "/images/gallery/feedlot.jpg" },
   { label: "Healthy cattle", img: "/images/gallery/cattle.jpg" },

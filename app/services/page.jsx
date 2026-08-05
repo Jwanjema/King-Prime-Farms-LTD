@@ -33,14 +33,15 @@ export default function Services() {
         </div>
       </section>
 
-      <section>
-        <div className="wrap" style={{ textAlign: "center" }}>
-          <SectionHead eyebrow="Work with us" title="Wholesale, finishing or retail?" />
-          <p style={{ color: "#5B5B50", maxWidth: 560, margin: "-24px auto 30px" }}>
-            Whether you need a reliable bulk supply program, contract finishing for your herd, or
-            premium cuts delivered to your door — start the conversation.
-          </p>
-          <div className="btn-row" style={{ justifyContent: "center" }}>
+      <section style={{ textAlign: "center" }}>
+        <div className="wrap">
+          <SectionHead
+            center
+            eyebrow="Work with us"
+            title="Wholesale, finishing or retail?"
+            sub="Whether you need a reliable bulk supply program, contract finishing for your herd, or premium cuts delivered to your door — start the conversation."
+          />
+          <div className="btn-row" style={{ justifyContent: "center", marginTop: 30 }}>
             <Link href="/contact" className="btn btn-gold">Make an enquiry</Link>
             <Link href="/products" className="btn btn-outline-dark">Shop retail cuts</Link>
           </div>
