@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { getOrders } from "@/lib/campdavid/orders";
+import { getOrderStatusByNumber } from "@/lib/campdavid/orders";
 import { unsealCheckoutSession, CHECKOUT_COOKIE } from "@/lib/checkout/session";
 
 export async function GET(request, { params }) {
@@ -8,15 +8,18 @@ export async function GET(request, { params }) {
     return Response.json({ error: "session_expired" }, { status: 401 });
   }
 
-  const orders = await getOrders(session.token);
-  const order = orders.find((o) => o.order_number === params.orderNumber);
-  if (!order) {
+  // Deliberately not using GET /api/orders here — see getOrderStatusByNumber
+  // in lib/campdavid/orders.js for why (a backend bug in OrderItems'
+  // appended attributes 500s that endpoint for any order with a bad
+  // product/package/tag reference, anywhere in the system).
+  const status = await getOrderStatusByNumber(params.orderNumber);
+  if (!status) {
     return Response.json({ error: "not_found" }, { status: 404 });
   }
 
-  if (order.isPaid) {
+  if (status.isPaid) {
     cookies().delete(CHECKOUT_COOKIE);
   }
 
-  return Response.json({ isPaid: !!order.isPaid, status: order.status });
+  return Response.json(status);
 }
