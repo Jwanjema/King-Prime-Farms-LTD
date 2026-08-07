@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { RETAIL_SITE_URL } from "@/data/site";
+import { useCart } from "@/lib/cart/CartContext";
 
 const links = [
   { href: "/about", label: "About" },
@@ -20,6 +20,7 @@ const links = [
 export default function Nav() {
   const path = usePathname();
   const [menu, setMenu] = useState(false);
+  const { itemCount, openDrawer } = useCart();
 
   if (path.startsWith("/admin")) return null;
 
@@ -42,9 +43,9 @@ export default function Nav() {
         </nav>
 
         <div className="nav-actions">
-          <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer" className="cart-btn">
-            Shop Retail
-          </a>
+          <button type="button" onClick={openDrawer} className="cart-btn" aria-label="Open cart">
+            Cart{itemCount > 0 ? ` (${itemCount})` : ""}
+          </button>
           <button className="menu-btn" onClick={() => setMenu(!menu)} aria-expanded={menu} aria-label="Toggle menu">
             Menu
           </button>
@@ -56,10 +57,6 @@ export default function Nav() {
             {l.label}
           </Link>
         ))}
-        <div className="mobile-menu-divider" />
-        <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)" }}>
-          Shop Retail ↗
-        </a>
       </nav>
     </header>
   );

@@ -4,15 +4,15 @@ import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ProductCard from "@/components/ProductCard";
 import Counter from "@/components/Counter";
-import { services, feedlotStages, whyUs, RETAIL_SITE_URL } from "@/data/site";
-import { getProducts } from "@/lib/data/products";
+import { services, feedlotStages, whyUs } from "@/data/site";
+import { getCategoryProducts } from "@/lib/campdavid/catalog";
 
 export const revalidate = 60;
 
 const marqueeItems = ["Dry-aged ribeye", "Feedlot finished", "Farm-to-table trace", "Wholesale supply", "Nairobi · Kenya", "Grade A beef"];
 
 export default async function Home() {
-  const products = await getProducts();
+  const products = await getCategoryProducts("all");
   return (
     <>
       <section className="hero" style={{ padding: 0 }}>
@@ -40,7 +40,7 @@ export default async function Home() {
                 production, raised, finished and processed under one roof.
               </p>
               <div className="btn-row">
-                <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">Shop Retail</a>
+                <Link href="/products" className="btn btn-gold">Shop Retail</Link>
                 <Link href="/contact" className="btn btn-outline">Visit our farm</Link>
               </div>
               <div className="hero-stats">
@@ -101,7 +101,7 @@ export default async function Home() {
 
       <section>
         <div className="wrap">
-          <SectionHead eyebrow="The cuts" title="Shop premium beef" sub="Browse our cuts here — order retail through Camp David, our sister site." />
+          <SectionHead eyebrow="The cuts" title="Shop premium beef" sub="Browse our cuts and order straight from this site." />
           <div className="grid-4">
             {products.slice(0, 4).map((p) => <ProductCard key={p.id} product={p} />)}
           </div>

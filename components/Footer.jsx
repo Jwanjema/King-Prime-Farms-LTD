@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { site, RETAIL_SITE_URL, RETAIL_PLAY_STORE_URL } from "@/data/site";
+import { site, RETAIL_PLAY_STORE_URL } from "@/data/site";
 
 export default function Footer() {
   const path = usePathname();
@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
           <div>
             <h5>Explore</h5>
-            <a href={RETAIL_SITE_URL} target="_blank" rel="noopener noreferrer">Shop meat</a>
+            <Link href="/products">Shop meat</Link>
             <Link href="/feedlot">Feedlot activities</Link>
             <Link href="/system">Livestock system</Link>
             <Link href="/contact">Wholesale enquiry</Link>

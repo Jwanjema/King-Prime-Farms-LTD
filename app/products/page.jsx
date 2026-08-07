@@ -1,14 +1,14 @@
 import Image from "next/image";
-import ProductCard from "@/components/ProductCard";
+import CategoryFilterGrid from "@/components/CategoryFilterGrid";
 import SectionHead from "@/components/SectionHead";
 import CowChart from "@/components/CowChart";
-import { getProducts } from "@/lib/data/products";
+import { getCategories, getCategoryProducts } from "@/lib/campdavid/catalog";
 
 export const metadata = { title: "Shop premium beef" };
 export const revalidate = 60;
 
 export default async function Products() {
-  const products = await getProducts();
+  const [categories, products] = await Promise.all([getCategories(), getCategoryProducts("all")]);
   return (
     <>
       <div className="page-hero" style={{ position: "relative", overflow: "hidden" }}>
@@ -18,7 +18,7 @@ export default async function Products() {
           <div className="eyebrow tag">The cuts</div>
           <h1>Premium meat products</h1>
           <p className="lead">
-            Browse our cuts — place your retail order through Camp David, our sister site. Wholesale
+            Browse our cuts and order straight from this site — pickup or delivery. Wholesale
             volumes welcome via enquiry.
           </p>
         </div>
@@ -42,11 +42,7 @@ export default async function Products() {
             title="The catalogue"
             sub="Prices are indicative per kg; final weight is confirmed at packing."
           />
-          <div className="grid-4">
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+          <CategoryFilterGrid categories={categories} initialProducts={products} />
         </div>
       </section>
     </>

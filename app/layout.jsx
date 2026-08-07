@@ -1,6 +1,9 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
+import Toast from "@/components/Toast";
+import { CartProvider } from "@/lib/cart/CartContext";
 import { site } from "@/data/site";
 
 export const metadata = {
@@ -31,9 +34,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        <CartProvider>
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+          <CartDrawer />
+          <Toast />
+        </CartProvider>
       </body>
     </html>
   );

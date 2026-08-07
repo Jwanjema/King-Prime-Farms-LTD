@@ -10,20 +10,20 @@ export const site = {
   socials: { instagram: "#", facebook: "#" },
 };
 
-// Retail ordering happens on Camp David Ventures (same company, retail arm) —
-// individual/small orders. This site (Kings Prime Farms) handles wholesale
-// enquiries via the Contact page instead. Referenced by ProductCard, the
-// homepage hero, Nav, and Footer as the destination for all retail "shop" /
-// "add to order" actions.
-export const RETAIL_SITE_URL = "https://www.campdavidventuresltd.co.ke/";
+// Retail checkout happens directly on this site now (lib/campdavid/*),
+// backed by the same company's Camp David Ventures API. The Play Store link
+// remains as an alternate channel — also the fallback we point returning
+// CampDavid app customers to at checkout (see lib/checkout/actions.js).
 export const RETAIL_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.campdavid.campdavid";
 
-// SEED SOURCE ONLY — not read by the site after the Firestore migration.
-// The public pages now read products/posts/jobs live from Firestore (see
-// lib/data/*.js); edit content going forward via /admin, not this file.
-// This array is only consumed once, by scripts/seed-firestore.mjs, to
-// populate Firestore on first setup. Prices originally tracked Camp
-// David's retail catalogue (see RETAIL_SITE_URL) as a starting point.
+// SEED SOURCE ONLY, and now STALE for products specifically: posts/jobs
+// still read live from Firestore (see lib/data/*.js, edit via /admin), but
+// products no longer do — the public pages now fetch the live CampDavid
+// catalog instead (see lib/campdavid/catalog.js). The /admin/products
+// Firestore CRUD UI still writes here but no longer affects what customers
+// see; it needs a decision (remove or relabel) as a follow-up, it's just
+// not touched by this change. This array is otherwise only consumed once,
+// by scripts/seed-firestore.mjs, to populate Firestore on first setup.
 export const products = [
   // Homepage teaser mix — kept first so page.jsx's products.slice(0, 4) shows
   // one of each family (dry-aged, classic steak, premium, goat).
