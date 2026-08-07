@@ -11,9 +11,9 @@ accent, fully responsive, working order cart with WhatsApp checkout.
   carcass) in brand colors. Pure server-rendered SVG, zero JS. They fill the
   product cards now and become secondary art (hover states, order emails, PDF
   catalogue, packaging stickers) once real photography lands.
-- **`components/CowChart.jsx`** — interactive butcher's cut chart: hover/tap a
-  primal region (chuck, rib, loin, rump, flank, brisket) to highlight it and see
-  its cuts. Keyboard accessible. Lives on the shop page.
+- **`components/CutTiles.jsx`** — "Know your cuts" tile grid on the shop page:
+  tap a cut family (chuck, rib, loin, rump & round, flank, brisket & shank) to
+  load its real, in-stock products inline via live catalogue search.
 
 **On photography:** these illustrations give the site its meat identity today,
 but they complement — not replace — real photos. Food buyers trust photographs

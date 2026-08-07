@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CategoryFilterGrid from "@/components/CategoryFilterGrid";
 import SectionHead from "@/components/SectionHead";
-import CowChart from "@/components/CowChart";
+import CutTiles from "@/components/CutTiles";
 import { getCategories, getCategoryProducts } from "@/lib/campdavid/catalog";
 
 export const metadata = { title: "Shop premium beef" };
@@ -27,11 +27,11 @@ export default async function Products() {
       <section style={{ paddingBottom: 40 }}>
         <div className="wrap">
           <SectionHead
-            eyebrow="Butcher's chart"
+            eyebrow="Butcher's picks"
             title="Know your cuts"
-            sub="Every animal maps to the cuts below — hover the chart to see where yours comes from."
+            sub="Tap a cut family to see what's ready to order right now."
           />
-          <CowChart />
+          <CutTiles />
         </div>
       </section>
 
