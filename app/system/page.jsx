@@ -3,7 +3,8 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import Counter from "@/components/Counter";
-import { systemPitch, traceChain, systemStats, systemModuleGroups, systemExtras } from "@/data/site";
+import SystemScreens from "@/components/SystemScreens";
+import { systemPitch, traceChain, systemStats, systemModuleGroups, systemExtras, systemScreens } from "@/data/site";
 
 export const metadata = {
   title: "Livestock & Feedlot Management System",
@@ -61,6 +62,17 @@ export default function System() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap">
+          <SectionHead
+            eyebrow="Real screens"
+            title="The actual app, running on our own herd"
+            sub="No mockups — these are live screens from the system tracking Kings Prime Farms cattle today."
+          />
+          <SystemScreens screens={systemScreens} />
         </div>
       </section>
 

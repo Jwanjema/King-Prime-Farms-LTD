@@ -4,6 +4,14 @@ import MarkHandledToggle from "@/components/admin/MarkHandledToggle";
 
 export const dynamic = "force-dynamic";
 
+const TYPE_LABELS = {
+  contact: "General",
+  wholesale: "Wholesale",
+  system: "System demo",
+  training: "Feedlot training",
+  support: "Feedlot support",
+};
+
 async function getAllEnquiries() {
   const snap = await adminDb.collection("enquiries").orderBy("createdAt", "desc").get();
   return snap.docs.map((d) => {
@@ -29,7 +37,7 @@ export default async function AdminEnquiries() {
             <div className="admin-enquiry-head">
               <div>
                 <span className="tag" style={{ color: "var(--gold-deep)", fontSize: 11 }}>
-                  {e.type === "wholesale" ? "Wholesale" : "General"} · {e.createdAt ? new Date(e.createdAt).toLocaleString() : "—"}
+                  {TYPE_LABELS[e.type] || "General"} · {e.createdAt ? new Date(e.createdAt).toLocaleString() : "—"}
                 </span>
                 <h3 style={{ fontSize: 17, marginTop: 4 }}>{e.name}</h3>
               </div>

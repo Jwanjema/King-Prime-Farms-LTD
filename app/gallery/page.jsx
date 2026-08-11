@@ -1,5 +1,5 @@
-import Image from "next/image";
 import SectionHead from "@/components/SectionHead";
+import Slideshow from "@/components/Slideshow";
 import { galleryItems } from "@/data/site";
 
 export const metadata = { title: "Gallery" };
@@ -11,7 +11,7 @@ export default function Gallery() {
         <div className="wrap">
           <div className="eyebrow tag">In the field</div>
           <h1>Gallery</h1>
-          <p className="lead">Feedlot, cattle, aging rooms, butchery, staff and fleet — the operation in pictures.</p>
+          <p className="lead">Feedlot and cattle, straight from the pens — the operation in pictures.</p>
         </div>
       </div>
 
@@ -20,16 +20,9 @@ export default function Gallery() {
           <SectionHead
             eyebrow="Photo & video"
             title="Around the farm"
-            sub="The operation in pictures — feedlot, cattle, aging room and butchery."
+            sub="Real shots from our pens, unedited. Use the arrows, or pick a frame below."
           />
-          <div className="gallery-grid">
-            {galleryItems.map((g) => (
-              <div key={g.label} className={`g-item ${g.tall ? "tall" : ""}`}>
-                <Image src={g.img} alt={g.label} fill sizes="(max-width: 920px) 50vw, 25vw" style={{ objectFit: "cover" }} />
-                <div className="glabel">{g.label}</div>
-              </div>
-            ))}
-          </div>
+          <Slideshow items={galleryItems} />
         </div>
       </section>
     </>

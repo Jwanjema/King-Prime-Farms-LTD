@@ -5,6 +5,48 @@ import Image from "next/image";
 import { site } from "@/data/site";
 import { submitEnquiry } from "@/lib/firebase";
 
+const TABS = {
+  contact: {
+    label: "General enquiry",
+    intro: "General enquiry",
+    askCompany: false,
+    messageLabel: "Message",
+    messagePlaceholder: "How can we help?",
+  },
+  wholesale: {
+    label: "Wholesale enquiry",
+    intro: "Wholesale enquiry",
+    askCompany: true,
+    companyPlaceholder: "Hotel, butchery or restaurant name",
+    messageLabel: "Volumes & cuts needed",
+    messagePlaceholder: "e.g. 200kg of sirloin & ribeye weekly for our steakhouse…",
+  },
+  system: {
+    label: "System demo",
+    intro: "Livestock system demo request",
+    askCompany: true,
+    companyPlaceholder: "Feedlot or butchery name",
+    messageLabel: "About your operation",
+    messagePlaceholder: "e.g. Herd size, number of pens, and whether you run your own butchery…",
+  },
+  training: {
+    label: "Feedlot training",
+    intro: "Feedlot training enquiry",
+    askCompany: true,
+    companyPlaceholder: "Feedlot or farm name",
+    messageLabel: "About your team",
+    messagePlaceholder: "e.g. Herd size, number of staff to train, and whether you'd prefer on-site or hosted training…",
+  },
+  support: {
+    label: "Feedlot support",
+    intro: "Feedlot support enquiry",
+    askCompany: true,
+    companyPlaceholder: "Feedlot or farm name",
+    messageLabel: "What you need help with",
+    messagePlaceholder: "e.g. Slow weight gain in Pen 3, rising feed costs, a health issue…",
+  },
+};
+
 export default function Contact() {
   return (
     <Suspense fallback={null}>
@@ -18,17 +60,17 @@ function ContactForm() {
   const [tab, setTab] = useState("contact");
   const [form, setForm] = useState({ name: "", phone: "", email: "", company: "", message: "" });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const cfg = TABS[tab];
 
   useEffect(() => {
     const type = searchParams.get("type");
-    if (type === "wholesale" || type === "system") setTab(type);
+    if (type && TABS[type]) setTab(type);
   }, [searchParams]);
 
   const submit = (e) => {
     e.preventDefault();
-    const intro = tab === "wholesale" ? "Wholesale enquiry" : tab === "system" ? "Livestock system demo request" : "General enquiry";
     const msg = [
-      `${intro} — ${site.name} website`,
+      `${cfg.intro} — ${site.name} website`,
       `Name: ${form.name}`,
       form.company && `Company: ${form.company}`,
       `Phone: ${form.phone}`,
@@ -44,7 +86,7 @@ function ContactForm() {
       name: form.name,
       phone: form.phone,
       email: form.email || null,
-      company: (tab === "wholesale" || tab === "system") ? form.company || null : null,
+      company: cfg.askCompany ? form.company || null : null,
       message: form.message,
       handled: false,
     }).catch((err) => console.error("Failed to record enquiry:", err));
@@ -81,13 +123,28 @@ function ContactForm() {
               </div>
               <div>
                 <div className="sec-eyebrow tag" style={{ marginBottom: 6 }}>Location</div>
-                <p style={{ fontSize: 15, color: "#4A4A40" }}>{site.location}</p>
+                <p style={{ fontSize: 15, color: "#4A4A40" }}>{site.map.label}, {site.map.building}</p>
+                <p style={{ fontSize: 15, color: "#4A4A40", marginBottom: 6 }}>{site.map.area} · Plus Code {site.map.plusCode}</p>
+                <a href={site.map.googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, fontWeight: 600 }}>
+                  Get directions →
+                </a>
+              </div>
+              <div>
+                <div className="sec-eyebrow tag" style={{ marginBottom: 6 }}>Opening hours</div>
+                <div style={{ fontSize: 14, color: "#4A4A40", display: "grid", gap: 4 }}>
+                  {site.hours.map((h) => (
+                    <div key={h.day} style={{ display: "flex", justifyContent: "space-between", maxWidth: 260 }}>
+                      <span>{h.day}</span>
+                      <span style={{ fontWeight: h.time === "Closed" ? 400 : 600 }}>{h.time}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div style={{ aspectRatio: "16/10", marginTop: 30, position: "relative", overflow: "hidden" }}>
               <iframe
-                title="Kings Prime Farms location — Nairobi, Kenya"
-                src="https://www.google.com/maps?q=Nairobi,Kenya&output=embed"
+                title={`${site.map.label} location`}
+                src={`https://www.google.com/maps?q=${site.map.lat},${site.map.lng}&z=16&output=embed`}
                 width="100%"
                 height="100%"
                 style={{ border: 0, position: "absolute", inset: 0 }}
@@ -98,39 +155,30 @@ function ContactForm() {
           </div>
 
           <div>
-            <div style={{ display: "flex", gap: 8, marginBottom: 24 }}>
-              <button
-                className={`btn btn-sm ${tab === "contact" ? "btn-gold" : "btn-outline-dark"}`}
-                onClick={() => setTab("contact")}
-              >
-                General enquiry
-              </button>
-              <button
-                className={`btn btn-sm ${tab === "wholesale" ? "btn-gold" : "btn-outline-dark"}`}
-                onClick={() => setTab("wholesale")}
-              >
-                Wholesale enquiry
-              </button>
-              <button
-                className={`btn btn-sm ${tab === "system" ? "btn-gold" : "btn-outline-dark"}`}
-                onClick={() => setTab("system")}
-              >
-                System demo
-              </button>
+            <div style={{ display: "flex", gap: 8, marginBottom: 24, flexWrap: "wrap" }}>
+              {Object.entries(TABS).map(([key, t]) => (
+                <button
+                  key={key}
+                  className={`btn btn-sm ${tab === key ? "btn-gold" : "btn-outline-dark"}`}
+                  onClick={() => setTab(key)}
+                >
+                  {t.label}
+                </button>
+              ))}
             </div>
             <form onSubmit={submit}>
               <div className="field">
                 <label htmlFor="name">Your name</label>
                 <input id="name" required value={form.name} onChange={set("name")} placeholder="Jane Wanjiku" />
               </div>
-              {(tab === "wholesale" || tab === "system") && (
+              {cfg.askCompany && (
                 <div className="field">
                   <label htmlFor="company">Business / company</label>
                   <input
                     id="company"
                     value={form.company}
                     onChange={set("company")}
-                    placeholder={tab === "system" ? "Feedlot or butchery name" : "Hotel, butchery or restaurant name"}
+                    placeholder={cfg.companyPlaceholder}
                   />
                 </div>
               )}
@@ -143,22 +191,14 @@ function ContactForm() {
                 <input id="email" type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" />
               </div>
               <div className="field">
-                <label htmlFor="message">
-                  {tab === "wholesale" ? "Volumes & cuts needed" : tab === "system" ? "About your operation" : "Message"}
-                </label>
+                <label htmlFor="message">{cfg.messageLabel}</label>
                 <textarea
                   id="message"
                   rows={5}
                   required
                   value={form.message}
                   onChange={set("message")}
-                  placeholder={
-                    tab === "wholesale"
-                      ? "e.g. 200kg of sirloin & ribeye weekly for our steakhouse…"
-                      : tab === "system"
-                      ? "e.g. Herd size, number of pens, and whether you run your own butchery…"
-                      : "How can we help?"
-                  }
+                  placeholder={cfg.messagePlaceholder}
                 />
               </div>
               <button type="submit" className="btn btn-gold" style={{ width: "100%", justifyContent: "center" }}>

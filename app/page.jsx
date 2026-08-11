@@ -29,7 +29,7 @@ export default async function Home() {
         <div className="wrap hero-fg hero-fg-pad">
           <div className="hero-grid">
             <div>
-              <div className="eyebrow tag">Nairobi, Kenya · Feedlot & butchery</div>
+              <div className="eyebrow tag">Githunguri, Kenya · Feedlot & butchery</div>
               <h1>
                 Premium beef.<br />
                 Expert feedlot<br />

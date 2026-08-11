@@ -15,19 +15,27 @@ export default function Services() {
         <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <div className="eyebrow tag">What we do</div>
           <h1>Our services</h1>
-          <p className="lead">Six business lines, one standard of quality — from live animal to finished cut.</p>
+          <p className="lead">Eight business lines, one standard of quality — from live animal to finished cut.</p>
         </div>
       </div>
 
       <section className="tex-pine on-dark" style={{ paddingTop: 60 }}>
         <div className="wrap">
-          <div className="line-grid cols-3">
+          <div className="svc-grid">
             {services.map((s) => (
-              <Reveal key={s.num} className="svc-card">
-                <span className="tagnum tag">{s.num} / {s.cat}</span>
-                <h3>{s.title}</h3>
-                <p>{s.body}</p>
-              </Reveal>
+              <Link key={s.num} href={`/blog/${s.slug}`} className="svc-card-link">
+                <Reveal className="svc-card">
+                  <div className="svc-card-media">
+                    <Image src={s.img} alt="" fill sizes="(max-width: 640px) 90vw, (max-width: 920px) 45vw, 28vw" style={{ objectFit: "cover" }} />
+                  </div>
+                  <div className="svc-card-body">
+                    <span className="tagnum tag">{s.num} / {s.cat}</span>
+                    <h3>{s.title}</h3>
+                    <p>{s.body}</p>
+                    <span className="svc-card-more tag">Read more →</span>
+                  </div>
+                </Reveal>
+              </Link>
             ))}
           </div>
         </div>

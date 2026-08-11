@@ -35,7 +35,8 @@ export default function Footer() {
           </div>
           <div>
             <h5>Visit</h5>
-            <p style={{ marginBottom: 14 }}>{site.location} — map pin on the contact page.</p>
+            <p style={{ marginBottom: 6 }}>{site.location}</p>
+            <a href={site.map.googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ marginBottom: 14 }}>Get directions</a>
             <a href={site.socials.instagram}>Instagram · Facebook</a>
             <a href={RETAIL_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 10 }}>
               <Image src="/images/google-play-badge.png" alt="Get Camp David on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />

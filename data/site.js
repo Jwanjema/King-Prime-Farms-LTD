@@ -6,7 +6,25 @@ export const site = {
   phone: "+254 7XX XXX XXX",
   whatsapp: "2547XXXXXXXX", // digits only, country code first — used for wa.me links
   email: "info@kingprimefarms.co.ke",
-  location: "Nairobi, Kenya",
+  location: "Matũgũta Shopping Center, Githunguri, Kenya",
+  map: {
+    label: "Kings Prime Farm",
+    plusCode: "WPCV+8H",
+    area: "Githunguri",
+    building: "Matũgũta Shopping Center",
+    lat: -1.0788384,
+    lng: 36.7439716,
+    googleMapsUrl: "https://maps.app.goo.gl/UcBXWtAGemshBm878",
+  },
+  hours: [
+    { day: "Monday", time: "9 am–5 pm" },
+    { day: "Tuesday", time: "9 am–5 pm" },
+    { day: "Wednesday", time: "9 am–5 pm" },
+    { day: "Thursday", time: "9 am–5 pm" },
+    { day: "Friday", time: "9 am–5 pm" },
+    { day: "Saturday", time: "9 am–5 pm" },
+    { day: "Sunday", time: "Closed" },
+  ],
   socials: { instagram: "#", facebook: "#" },
 };
 
@@ -64,12 +82,14 @@ export const products = [
 ];
 
 export const services = [
-  { num: "01", cat: "Feedlot", title: "Feedlot operations", body: "Scientifically managed finishing pens with monitored nutrition and weight gain." },
-  { num: "02", cat: "Beef", title: "Premium beef production", body: "Grain-finished cattle raised for marbling and consistent grading." },
-  { num: "03", cat: "Age", title: "Dry-aged beef", body: "Climate-controlled aging rooms for deeper flavour and tenderness." },
-  { num: "04", cat: "Wholesale", title: "Wholesale supply", body: "Bulk carcass and cut programs for hotels, butcheries and restaurants." },
-  { num: "05", cat: "Retail", title: "Retail meat sales", body: "Direct-to-consumer cuts, online orders and farm-gate pickup." },
-  { num: "06", cat: "Finishing", title: "Livestock finishing", body: "Contract finishing services for partner ranches and producers." },
+  { num: "01", cat: "Feedlot", title: "Feedlot operations", body: "Scientifically managed finishing pens with monitored nutrition and weight gain.", slug: "inside-our-feedlot", img: "/images/gallery/pen-3-dusk.jpg" },
+  { num: "02", cat: "Beef", title: "Premium beef production", body: "Grain-finished cattle raised for marbling and consistent grading.", slug: "premium-beef-production", img: "/images/gallery/multi-breed.jpg" },
+  { num: "03", cat: "Age", title: "Dry-aged beef", body: "Climate-controlled aging rooms for deeper flavour and tenderness.", slug: "benefits-of-dry-aged-beef", img: "/images/blog-dry-aging.jpg" },
+  { num: "04", cat: "Wholesale", title: "Wholesale supply", body: "Bulk carcass and cut programs for hotels, butcheries and restaurants.", slug: "wholesale-supply", img: "/images/gallery/pen-2-dusk.jpg" },
+  { num: "05", cat: "Retail", title: "Retail meat sales", body: "Direct-to-consumer cuts, online orders and farm-gate pickup.", slug: "retail-meat-sales", img: "/images/blog-cooking.jpg" },
+  { num: "06", cat: "Finishing", title: "Livestock finishing", body: "Contract finishing services for partner ranches and producers.", slug: "livestock-finishing", img: "/images/gallery/resting-herd.jpg" },
+  { num: "07", cat: "Training", title: "Feedlot training", body: "Hands-on and on-site training for feedlot owners and staff, built from how we run our own pens.", slug: "feedlot-training", img: "/images/gallery/feeding-k105.jpg" },
+  { num: "08", cat: "Support", title: "Feedlot support", body: "Ongoing advisory support for nutrition, health protocols and operations once your feedlot is running.", slug: "feedlot-support", img: "/images/system/dashboard-menu.jpg" },
 ];
 
 export const feedlotStages = [
@@ -117,6 +137,54 @@ export const posts = [
     date: "2026-06-05",
     category: "Cooking",
     body: "Great steak needs less than you think: a screaming-hot pan, coarse salt, and restraint. Salt the steak generously at least 40 minutes ahead. Get your pan properly hot before the meat touches it — you want an immediate sear. Flip once. For a 3cm ribeye, roughly three minutes a side gets you to medium-rare.\n\nThen the rule everyone breaks: rest it. Five full minutes off the heat lets the juices redistribute. Cut too early and everything you paid for ends up on the board.",
+  },
+  {
+    slug: "premium-beef-production",
+    title: "What \"grain-finished\" actually means for your plate",
+    excerpt: "Marbling isn't an accident. It's the last stage of a feeding program built specifically to get there.",
+    date: "2026-07-10",
+    category: "Beef",
+    body: "Grading and marbling are decided long before an animal reaches the butchery. In the final finishing phase, cattle move onto a grain-based ration formulated for fat deposition within the muscle — the marbling that carries flavour and keeps a cut tender under heat.\n\nWe track this phase the same way we track everything else: average daily gain, feed conversion ratio, and body condition score, animal by animal, pen by pen. The result is a grade you can rely on order after order, not a lucky batch.",
+  },
+  {
+    slug: "wholesale-supply",
+    title: "What a reliable wholesale beef program looks like",
+    excerpt: "For hotels, butcheries and restaurants: consistent cuts, consistent volumes, and a supply chain you can plan a menu around.",
+    date: "2026-07-16",
+    category: "Wholesale",
+    body: "The single biggest complaint we hear from hotels and butcheries switching suppliers is inconsistency — different grades, different volumes, different lead times, week to week. A wholesale program only works if it removes that uncertainty.\n\nOur wholesale supply runs on standing orders and forecast volumes, drawn from a feedlot we control end to end, so a carcass or cut program can be sized to your kitchen and held steady. Bulk carcass, primal or portioned-cut programs are all available, with delivery scheduled around your service hours rather than ours.",
+  },
+  {
+    slug: "retail-meat-sales",
+    title: "From feedlot to your door: how retail orders work",
+    excerpt: "Every retail cut sold traces back to a specific animal and pen. Here's what that means for freshness and how ordering works.",
+    date: "2026-07-20",
+    category: "Retail",
+    body: "Retail is the last step of the same chain that starts in our feedlot — there's no separate supplier in between. That's what lets us guarantee freshness and consistent grading on individual cuts, not just bulk orders.\n\nOrders placed online are prepared to order and delivered, with farm-gate pickup available for customers near the feedlot. Every cut is traceable back to its pen and feeding record, the same traceability wholesale partners rely on, just sized for a household order.",
+  },
+  {
+    slug: "livestock-finishing",
+    title: "Contract finishing: bring us your cattle, we finish them right",
+    excerpt: "For ranches and producers who raise cattle but don't run a feedlot — a finishing program that hands animals back market-ready.",
+    date: "2026-07-24",
+    category: "Finishing",
+    body: "Not every producer wants to run a feedlot, and that's exactly what contract finishing is for. You bring cattle to us at the weight and age you have them, and we take them through a formulated finishing ration, routine veterinary care and regular weigh-ins until they hit target market weight and grade.\n\nYou get the same monitored nutrition and welfare standards our own herd gets, with full weight and health records handed back with the animal. It's a way to access professional feedlot finishing without the fixed cost of running your own pens.",
+  },
+  {
+    slug: "feedlot-training",
+    title: "Feedlot training: what we teach, and why it's hands-on",
+    excerpt: "Classroom theory doesn't run a feedlot. Our training is built from the daily routine that runs ours — nutrition, health, records and pen management.",
+    date: "2026-07-28",
+    category: "Training",
+    body: "Most feedlot failures aren't caused by bad cattle — they're caused by gaps in routine: inconsistent feeding times, missed vaccination windows, no weight records to catch a problem early. Our training program is built directly from the routine that runs Kings Prime Farms, not a generic curriculum.\n\nSessions cover nutrition and ration formulation, daily feeding and pen management, veterinary and health protocols, and the record-keeping that turns a feedlot from guesswork into a measurable business. Training can run on-site at your own feedlot or hosted at ours, for owners, managers or feedlot staff.",
+  },
+  {
+    slug: "feedlot-support",
+    title: "Feedlot support: help after the training ends",
+    excerpt: "An ongoing advisory line for nutrition questions, health issues and operational decisions once your feedlot is up and running.",
+    date: "2026-08-01",
+    category: "Support",
+    body: "Training gets a feedlot started; support is what keeps it running well once real conditions — a slow-gaining pen, a feed cost spike, an unexpected health issue — show up. Our feedlot support service is ongoing advisory access to the same standards we run our own operation on.\n\nThat includes ration adjustments as feed prices or animal condition change, guidance on veterinary and health protocols, and help reading your own performance numbers — ADG, FCR, feed cost per kg gain — to catch problems while they're still cheap to fix. It pairs naturally with our livestock management system, which gives you the numbers support is built to act on.",
   },
 ];
 
@@ -223,12 +291,31 @@ export const systemExtras = [
   { title: "ERP-ready", body: "Integrates with finance, procurement and operations systems for businesses that need it to plug into a wider stack." },
 ];
 
+export const systemScreens = [
+  { label: "Farm dashboard & modules", img: "/images/system/dashboard-menu.jpg" },
+  { label: "Per-animal tag detail", img: "/images/system/animal-detail.jpg" },
+  { label: "Weight & ADG tracking", img: "/images/system/weight-tracking.jpg" },
+  { label: "Feed cost tracking", img: "/images/system/feeds-tracking.jpg" },
+  { label: "Branded PDF reports", img: "/images/system/report-history.jpg" },
+];
+
 export const galleryItems = [
-  { label: "Feedlot", tall: true, img: "/images/gallery/feedlot.jpg" },
-  { label: "Healthy cattle", img: "/images/gallery/cattle.jpg" },
-  { label: "Dry-aging room", img: "/images/gallery/aging-room.jpg" },
-  { label: "Butchery", tall: true, img: "/images/gallery/butchery.jpg" },
-  { label: "Meat cutting", img: "/images/gallery/meat-cutting.jpg" },
-  { label: "Staff", img: "/images/gallery/staff.jpg" },
-  { label: "Delivery fleet", img: "/images/gallery/delivery-fleet.jpg" },
+  { label: "Pen 3, dusk", img: "/images/gallery/pen-3-dusk.jpg", w: 1280, h: 960 },
+  { label: "Pen 2, dusk", img: "/images/gallery/pen-2-dusk.jpg", w: 1280, h: 960 },
+  { label: "Pen 5 signage", img: "/images/gallery/pen-5-signage.jpg", w: 960, h: 1280 },
+  { label: "Pen 6, daylight", img: "/images/gallery/pen-6-daylight.jpg", w: 960, h: 1280 },
+  { label: "K188", img: "/images/gallery/portrait-k188.jpg", w: 960, h: 1280 },
+  { label: "Calf", img: "/images/gallery/portrait-calf.jpg", w: 960, h: 1280 },
+  { label: "Multi-breed stock", img: "/images/gallery/multi-breed.jpg", w: 1280, h: 960 },
+  { label: "Boran, Sahiwal & crossbred", img: "/images/gallery/multi-breed-2.jpg", w: 960, h: 1280 },
+  { label: "Bull portrait", img: "/images/gallery/bull-portrait.jpg", w: 1280, h: 960 },
+  { label: "Feeding time", img: "/images/gallery/bull-candid.jpg", w: 1280, h: 960 },
+  { label: "K105 at the trough", img: "/images/gallery/feeding-k105.jpg", w: 1280, h: 960 },
+  { label: "Trough close", img: "/images/gallery/feeding-trough.jpg", w: 960, h: 1280 },
+  { label: "Evening feed", img: "/images/gallery/feeding-evening.jpg", w: 1280, h: 960 },
+  { label: "Resting herd", img: "/images/gallery/resting-herd.jpg", w: 1280, h: 960 },
+  { label: "Under the trees", img: "/images/gallery/white-bulls.jpg", w: 1280, h: 960 },
+  { label: "Pen 6, wide", img: "/images/gallery/wide-pen6.jpg", w: 960, h: 1280 },
+  { label: "Golden hour", img: "/images/gallery/golden-hour.jpg", w: 1280, h: 960 },
+  { label: "Storm light", img: "/images/gallery/stormy-sky.jpg", w: 960, h: 1280 },
 ];

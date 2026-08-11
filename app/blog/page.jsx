@@ -10,6 +10,12 @@ const postImages = {
   "benefits-of-dry-aged-beef": "/images/blog-dry-aging.jpg",
   "inside-our-feedlot": "/images/blog-feedlot.jpg",
   "cooking-the-perfect-steak": "/images/blog-cooking.jpg",
+  "premium-beef-production": "/images/gallery/multi-breed.jpg",
+  "wholesale-supply": "/images/gallery/pen-2-dusk.jpg",
+  "retail-meat-sales": "/images/blog-cooking.jpg",
+  "livestock-finishing": "/images/gallery/resting-herd.jpg",
+  "feedlot-training": "/images/gallery/feeding-k105.jpg",
+  "feedlot-support": "/images/system/dashboard-menu.jpg",
 };
 const FALLBACK_IMAGE = "/images/blog-feedlot.jpg";
 
