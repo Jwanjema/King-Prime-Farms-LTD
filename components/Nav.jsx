@@ -9,7 +9,6 @@ const links = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/products", label: "Shop" },
-  { href: "/account", label: "My Orders" },
   { href: "/feedlot", label: "Feedlot" },
   { href: "/system", label: "System" },
   { href: "/gallery", label: "Gallery" },
@@ -44,6 +43,9 @@ export default function Nav() {
         </nav>
 
         <div className="nav-actions">
+          <Link href="/account" className={`account-btn ${path.startsWith("/account") ? "active" : ""}`} aria-label="My orders" title="My orders">
+            <span aria-hidden>◷</span>
+          </Link>
           <button type="button" onClick={openDrawer} className="cart-btn" aria-label="Open cart">
             Cart{itemCount > 0 ? ` (${itemCount})` : ""}
           </button>
