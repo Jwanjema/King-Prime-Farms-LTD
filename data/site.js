@@ -3,8 +3,8 @@ export const site = {
   legal: "Kings Prime Farms Ltd",
   slogan: "Quality from farm to table",
   tagline: "From our feedlot to your table — premium beef, dry-aged excellence and trusted livestock production.",
-  phone: "+254 7XX XXX XXX",
-  whatsapp: "2547XXXXXXXX", // digits only, country code first — used for wa.me links
+  phone: "0795 675 866",
+  whatsapp: "254795675866", // digits only, country code first — used for wa.me links
   email: "info@kingsprimefarmsltd.co.ke",
   location: "Matũgũta Shopping Center, Githunguri, Kenya",
   map: {
@@ -33,6 +33,7 @@ export const site = {
 // remains as an alternate channel — also the fallback we point returning
 // CampDavid app customers to at checkout (see lib/checkout/actions.js).
 export const RETAIL_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.campdavid.campdavid";
+export const SYSTEM_PLAY_STORE_URL = "https://play.google.com/store/search?q=posnext&c=apps&hl=en";
 
 // SEED SOURCE ONLY, and now STALE for products specifically: posts/jobs
 // still read live from Firestore (see lib/data/*.js, edit via /admin), but

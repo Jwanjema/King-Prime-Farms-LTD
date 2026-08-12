@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import Counter from "@/components/Counter";
 import SystemScreens from "@/components/SystemScreens";
-import { systemPitch, traceChain, systemStats, systemModuleGroups, systemExtras, systemScreens } from "@/data/site";
+import { SYSTEM_PLAY_STORE_URL, systemPitch, traceChain, systemStats, systemModuleGroups, systemExtras, systemScreens } from "@/data/site";
 
 export const metadata = {
   title: "Livestock & Feedlot Management System",
@@ -25,6 +25,9 @@ export default function System() {
           <div className="btn-row" style={{ marginTop: 28 }}>
             <Link href="/contact?type=system" className="btn btn-gold">Request a demo</Link>
             <Link href="#modules" className="btn btn-outline">See what's included</Link>
+            <a href={SYSTEM_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Get POSNEXT on Google Play">
+              <Image src="/images/google-play-badge.png" alt="Get POSNEXT on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
+            </a>
           </div>
         </div>
       </div>
@@ -125,6 +128,9 @@ export default function System() {
           <div className="btn-row" style={{ justifyContent: "center", marginTop: 30 }}>
             <Link href="/contact?type=system" className="btn btn-gold">Request a demo</Link>
             <Link href="/feedlot" className="btn btn-outline-dark">See our feedlot</Link>
+            <a href={SYSTEM_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Get POSNEXT on Google Play">
+              <Image src="/images/google-play-badge.png" alt="Get POSNEXT on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
+            </a>
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { site, RETAIL_PLAY_STORE_URL } from "@/data/site";
+import { site, RETAIL_PLAY_STORE_URL, SYSTEM_PLAY_STORE_URL } from "@/data/site";
 
 export default function Footer() {
   const path = usePathname();
@@ -41,6 +41,9 @@ export default function Footer() {
             <a href={site.socials.instagram}>Instagram · Facebook</a>
             <a href={RETAIL_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 10 }}>
               <Image src="/images/google-play-badge.png" alt="Get Camp David on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
+            </a>
+            <a href={SYSTEM_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 8 }}>
+              <Image src="/images/google-play-badge.png" alt="Get POSNEXT on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
             </a>
           </div>
         </div>
