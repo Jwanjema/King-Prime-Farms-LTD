@@ -68,7 +68,10 @@ export default function PaymentStatus({ orderNumber, mpesaPhone }) {
       <div>
         <h2>Payment confirmed</h2>
         <p>Your order #{orderNumber} is paid and on its way to being prepared. We'll be in touch with delivery/pickup details.</p>
-        <Link href="/products" className="btn btn-beef" style={{ marginTop: 18 }}>Continue shopping</Link>
+        <div className="btn-row" style={{ marginTop: 18 }}>
+          <Link href="/account" className="btn btn-gold">Track order</Link>
+          <Link href="/products" className="btn btn-beef">Continue shopping</Link>
+        </div>
       </div>
     );
   }

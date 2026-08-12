@@ -28,6 +28,7 @@ export default function Footer() {
           <div>
             <h5>Explore</h5>
             <Link href="/products">Shop meat</Link>
+            <Link href="/account">My orders</Link>
             <Link href="/feedlot">Feedlot activities</Link>
             <Link href="/system">Livestock system</Link>
             <Link href="/contact">Wholesale enquiry</Link>
