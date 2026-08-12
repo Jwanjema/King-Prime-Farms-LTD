@@ -5,7 +5,7 @@ export const site = {
   tagline: "From our feedlot to your table — premium beef, dry-aged excellence and trusted livestock production.",
   phone: "+254 7XX XXX XXX",
   whatsapp: "2547XXXXXXXX", // digits only, country code first — used for wa.me links
-  email: "info@kingprimefarms.co.ke",
+  email: "info@kingsprimefarmsltd.co.ke",
   location: "Matũgũta Shopping Center, Githunguri, Kenya",
   map: {
     label: "Kings Prime Farm",

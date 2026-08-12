@@ -3,6 +3,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { site } from "@/data/site";
+import { sendContactEmail } from "@/lib/contact/actions";
 import { submitEnquiry } from "@/lib/firebase";
 
 const TABS = {
@@ -59,6 +60,8 @@ function ContactForm() {
   const searchParams = useSearchParams();
   const [tab, setTab] = useState("contact");
   const [form, setForm] = useState({ name: "", phone: "", email: "", company: "", message: "" });
+  const [pending, setPending] = useState(false);
+  const [notice, setNotice] = useState(null);
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
   const cfg = TABS[tab];
 
@@ -67,8 +70,11 @@ function ContactForm() {
     if (type && TABS[type]) setTab(type);
   }, [searchParams]);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
+    setPending(true);
+    setNotice(null);
+
     const msg = [
       `${cfg.intro} — ${site.name} website`,
       `Name: ${form.name}`,
@@ -81,7 +87,7 @@ function ContactForm() {
 
     // Record-keeping write for the admin inbox — must never block or break
     // the WhatsApp send, which is the primary channel for this audience.
-    submitEnquiry({
+    const enquiry = {
       type: tab,
       name: form.name,
       phone: form.phone,
@@ -89,7 +95,17 @@ function ContactForm() {
       company: cfg.askCompany ? form.company || null : null,
       message: form.message,
       handled: false,
-    }).catch((err) => console.error("Failed to record enquiry:", err));
+    };
+
+    submitEnquiry(enquiry).catch((err) => console.error("Failed to record enquiry:", err));
+    const emailResult = await sendContactEmail(enquiry);
+    setPending(false);
+    setNotice(emailResult);
+
+    if (emailResult.ok) {
+      setForm({ name: "", phone: "", email: "", company: "", message: "" });
+      return;
+    }
 
     window.open(`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   };
@@ -201,11 +217,16 @@ function ContactForm() {
                   placeholder={cfg.messagePlaceholder}
                 />
               </div>
-              <button type="submit" className="btn btn-gold" style={{ width: "100%", justifyContent: "center" }}>
-                Send via WhatsApp
+              {notice && (
+                <p style={{ color: notice.ok ? "var(--pine)" : "var(--beef)", marginBottom: 14 }}>
+                  {notice.message}
+                </p>
+              )}
+              <button type="submit" className="btn btn-gold" disabled={pending} style={{ width: "100%", justifyContent: "center" }}>
+                {pending ? "Sending..." : "Send enquiry"}
               </button>
               <p style={{ fontSize: 11.5, color: "#8b8a7c", marginTop: 12 }}>
-                Submitting opens WhatsApp with your enquiry pre-filled — nothing is sent until you press send there.
+                Your enquiry is emailed to our team. If email is unavailable, WhatsApp opens with your message pre-filled.
               </p>
             </form>
           </div>

@@ -17,7 +17,7 @@ export default async function Home() {
     <>
       <section className="hero" style={{ padding: 0 }}>
         <Image
-          src="/images/hero-bull-sunset.jpg"
+          src="/images/gallery/multi-breed.jpg"
           alt=""
           fill
           priority
