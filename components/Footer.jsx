@@ -39,11 +39,26 @@ export default function Footer() {
             <p style={{ marginBottom: 6 }}>{site.location}</p>
             <a href={site.map.googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ marginBottom: 14 }}>Get directions</a>
             <a href={site.socials.instagram}>Instagram · Facebook</a>
-            <a href={RETAIL_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 10 }}>
-              <Image src="/images/google-play-badge.png" alt="Get Camp David on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
+          </div>
+        </div>
+
+        <div className="foot-apps">
+          <div className="foot-app">
+            <div className="foot-app-copy">
+              <span className="tag">Order meat</span>
+              <p>Camp David — our retail ordering app</p>
+            </div>
+            <a href={RETAIL_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">
+              <Image src="/images/google-play-badge.png" alt="Get the Camp David retail app on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
             </a>
-            <a href={SYSTEM_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 8 }}>
-              <Image src="/images/google-play-badge.png" alt="Get POSNEXT on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
+          </div>
+          <div className="foot-app">
+            <div className="foot-app-copy">
+              <span className="tag">Run a feedlot</span>
+              <p>POSNEXT — our livestock management system</p>
+            </div>
+            <a href={SYSTEM_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">
+              <Image src="/images/google-play-badge.png" alt="Get the POSNEXT livestock system app on Google Play" width={135} height={40} style={{ height: 40, width: "auto" }} />
             </a>
           </div>
         </div>
