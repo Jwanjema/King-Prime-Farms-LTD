@@ -6,5 +6,14 @@ const nextConfig = {
       { protocol: "https", hostname: "www.campdavidventuresltd.co.ke" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/webmail",
+        destination: "https://da33.host-ww.net/roundcube/",
+        permanent: false,
+      },
+    ];
+  },
 };
 export default nextConfig;
